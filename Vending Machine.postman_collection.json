@@ -1,0 +1,1844 @@
+{
+	"info": {
+		"_postman_id": "62ad7c0d-f18c-415e-a2ec-f0a62a195de4",
+		"name": "Vending Machine",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2890568"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.collectionVariables.set(\"TOKEN\", pm.response.json().access_token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\":\"demo_seller\",\n    \"password\":\"secret\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/auth/login",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						},
+						"description": "route to login"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\":\"demo_seller\",\n    \"password\":\"secret\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/auth/login",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 26 Jun 2022 16:33:44 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 26 Jun 2022 16:33:44 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.0.14"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": \"ff9984f9-f845-435a-9e29-0672db968ef5\",\n        \"username\": \"demo_seller\",\n        \"deposit\": 0,\n        \"role\": \"seller\",\n        \"created_at\": \"2022-06-26T09:34:57.000000Z\",\n        \"updated_at\": \"2022-06-26T09:34:57.000000Z\"\n    },\n    \"status\": \"success\",\n    \"access_token\": \"3|SlDipAEd1wK1RTF8O71x4aB7KHdUYwtbpHgu1Rx9\",\n    \"token_type\": \"bearer\",\n    \"message\": \"User logged in\"\n}"
+						},
+						{
+							"name": "Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\":\"demo_seller\",\n    \"password\":\"secrdet\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/auth/login",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 26 Jun 2022 16:34:57 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 26 Jun 2022 16:34:57 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.0.14"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"message\": \"Invalid credentials\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/auth/logout",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"auth",
+								"logout"
+							]
+						},
+						"description": "route to initiate logout and destroy token"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/auth/logout",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"auth",
+										"logout"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 26 Jun 2022 13:01:17 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 26 Jun 2022 13:01:17 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.0.14"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"User successfully signed out\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Logout All",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/auth/logout/all",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"auth",
+								"logout",
+								"all"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/auth/logout/all",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"auth",
+										"logout",
+										"all"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 26 Jun 2022 16:34:41 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 26 Jun 2022 16:34:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.0.14"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"User successfully logged out all sessions\"\n}"
+						}
+					]
+				}
+			],
+			"description": "Implemented authentication routes",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Get Users",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{host}}/users",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users"
+							]
+						},
+						"description": "list all organisation tasks"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{host}}/users",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 26 Jun 2022 16:35:17 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 26 Jun 2022 16:35:17 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.0.14"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": \"10b7ecc2-b5c8-4000-9614-12d01dc9122e\",\n            \"username\": \"demo_seller_two\",\n            \"deposit\": 0,\n            \"role\": \"seller\",\n            \"created_at\": \"2022-06-26T09:34:57.000000Z\",\n            \"updated_at\": \"2022-06-26T09:34:57.000000Z\"\n        },\n        {\n            \"id\": \"4b4e2412-c209-47c9-b124-1dca0b151e42\",\n            \"username\": \"demo_buyer\",\n            \"deposit\": 100,\n            \"role\": \"buyer\",\n            \"created_at\": \"2022-06-26T09:34:57.000000Z\",\n            \"updated_at\": \"2022-06-26T09:34:57.000000Z\"\n        },\n        {\n            \"id\": \"bf730ce6-57bc-40b1-bdf1-55b06a7166b4\",\n            \"username\": \"demo_buyer_two\",\n            \"deposit\": 50,\n            \"role\": \"buyer\",\n            \"created_at\": \"2022-06-26T09:34:57.000000Z\",\n            \"updated_at\": \"2022-06-26T09:34:57.000000Z\"\n        },\n        {\n            \"id\": \"ff9984f9-f845-435a-9e29-0672db968ef5\",\n            \"username\": \"demo_seller\",\n            \"deposit\": 0,\n            \"role\": \"seller\",\n            \"created_at\": \"2022-06-26T09:34:57.000000Z\",\n            \"updated_at\": \"2022-06-26T09:34:57.000000Z\"\n        }\n    ],\n    \"status\": \"success\",\n    \"message\": \"List of users\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get User",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{host}}/users/bf730ce6-57bc-40b1-bdf1-55b06a7166b4",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"bf730ce6-57bc-40b1-bdf1-55b06a7166b4"
+							]
+						},
+						"description": "display details and contents of specific task"
+					},
+					"response": [
+						{
+							"name": "Error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{host}}/users/539e6bd783414ddfb4d416d110c3423d",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"users",
+										"539e6bd783414ddfb4d416d110c3423d"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 26 Jun 2022 16:47:08 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 26 Jun 2022 16:47:08 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.0.14"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"message\": \"Unable to fetch user\"\n}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{host}}/users/bf730ce6-57bc-40b1-bdf1-55b06a7166b4",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"users",
+										"bf730ce6-57bc-40b1-bdf1-55b06a7166b4"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 26 Jun 2022 16:47:42 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 26 Jun 2022 16:47:42 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.0.14"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": \"bf730ce6-57bc-40b1-bdf1-55b06a7166b4\",\n        \"username\": \"demo_buyer_two\",\n        \"deposit\": 50,\n        \"role\": \"buyer\",\n        \"created_at\": \"2022-06-26T09:34:57.000000Z\",\n        \"updated_at\": \"2022-06-26T09:34:57.000000Z\"\n    },\n    \"status\": \"success\",\n    \"message\": \"User detail\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"demo_buyer_three\",\n    \"deposit\": 10,\n    \"role\": \"buyer\",\n    \"password\": \"password\",\n    \"password_confirmation\": \"password\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/users",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users"
+							]
+						},
+						"description": "create new task"
+					},
+					"response": [
+						{
+							"name": "Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"demo_buyer_two\",\n    \"deposit\": 523,\n    \"role\": \"jkl\",\n    \"password\": \"password\",\n    \"password_confirmation\": \"password\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/users",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "Unprocessable Content",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 26 Jun 2022 17:30:13 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 26 Jun 2022 17:30:13 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.0.14"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"data\": [\n        \"The username has already been taken.\",\n        \"The only valid deposit values allowed are 5, 10, 20, 50, 100 or 0\",\n        \"The selected role is invalid.\"\n    ],\n    \"message\": \"The username has already been taken.\"\n}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"demo_buyer_three\",\n    \"deposit\": 10,\n    \"role\": \"buyer\",\n    \"password\": \"password\",\n    \"password_confirmation\": \"password\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/users",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 26 Jun 2022 17:31:42 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 26 Jun 2022 17:31:42 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.0.14"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"username\": \"demo_buyer_three\",\n        \"deposit\": 10,\n        \"role\": \"buyer\",\n        \"id\": \"7d4d81d7-7e97-40d7-bcca-59c25fae5088\",\n        \"updated_at\": \"2022-06-26T17:31:42.000000Z\",\n        \"created_at\": \"2022-06-26T17:31:42.000000Z\"\n    },\n    \"status\": \"success\",\n    \"message\": \"User created successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"username\": \"buyer_vibe\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/users/7d4d81d7-7e97-40d7-bcca-59c25fae5088",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"7d4d81d7-7e97-40d7-bcca-59c25fae5088"
+							]
+						},
+						"description": "update an existing task"
+					},
+					"response": [
+						{
+							"name": "Error",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n   \"username\": \"buyer_vibe\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/users/9957c945e5ff46178f0f2a85f67f34d1",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"users",
+										"9957c945e5ff46178f0f2a85f67f34d1"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 26 Jun 2022 17:41:00 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 26 Jun 2022 17:41:00 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.0.14"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"message\": \"Error occurred while updating user\"\n}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n   \"username\": \"buyer_vibe\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/users/7d4d81d7-7e97-40d7-bcca-59c25fae5088",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"users",
+										"7d4d81d7-7e97-40d7-bcca-59c25fae5088"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 26 Jun 2022 17:41:41 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 26 Jun 2022 17:41:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.0.14"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": \"7d4d81d7-7e97-40d7-bcca-59c25fae5088\",\n        \"username\": \"buyer_vibe\",\n        \"deposit\": 10,\n        \"role\": \"buyer\",\n        \"created_at\": \"2022-06-26T17:31:42.000000Z\",\n        \"updated_at\": \"2022-06-26T17:41:41.000000Z\"\n    },\n    \"status\": \"success\",\n    \"message\": \"User updated successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{host}}/users/7d4d81d7-7e97-40d7-bcca-59c25fae5088",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"7d4d81d7-7e97-40d7-bcca-59c25fae5088"
+							]
+						},
+						"description": "delete a task"
+					},
+					"response": [
+						{
+							"name": "Error",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{host}}/users/db3b7c9bfe474a5992f636bf66fd93bc",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"users",
+										"db3b7c9bfe474a5992f636bf66fd93bc"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 26 Jun 2022 17:45:53 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 26 Jun 2022 17:45:53 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.0.14"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"message\": \"Unable to delete user\"\n}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{host}}/users/7d4d81d7-7e97-40d7-bcca-59c25fae5088",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"users",
+										"7d4d81d7-7e97-40d7-bcca-59c25fae5088"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 26 Jun 2022 17:46:28 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 26 Jun 2022 17:46:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.0.14"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"User deleted\"\n}"
+						}
+					]
+				}
+			],
+			"description": "Rest routes implemented for task service",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Get Products",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/products",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"products"
+							]
+						},
+						"description": "list all organisation expenses"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Product",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{host}}/products/cc33242a-c185-4422-9575-48821d0e3ab8",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"products",
+								"cc33242a-c185-4422-9575-48821d0e3ab8"
+							]
+						},
+						"description": "display details of specific expense"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{host}}/products/cc33242a-c185-4422-9575-48821d0e3ab8",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"products",
+										"cc33242a-c185-4422-9575-48821d0e3ab8"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 26 Jun 2022 20:55:40 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 26 Jun 2022 20:55:40 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.0.14"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": \"cc33242a-c185-4422-9575-48821d0e3ab8\",\n        \"name\": \"Chocolate\",\n        \"amount_available\": 2,\n        \"cost\": 10,\n        \"seller_id\": \"ff9984f9-f845-435a-9e29-0672db968ef5\",\n        \"created_at\": \"2022-06-26T20:38:59.000000Z\",\n        \"updated_at\": \"2022-06-26T20:48:19.000000Z\"\n    },\n    \"status\": \"success\",\n    \"message\": \"Product detail\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Create Product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Chocolate\",\n    \"amount_available\": 2,\n    \"cost\": 10\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/products",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"products"
+							]
+						},
+						"description": "create new expense"
+					},
+					"response": [
+						{
+							"name": "Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/products",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"status": "Unprocessable Content",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 26 Jun 2022 20:26:31 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 26 Jun 2022 20:26:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.0.14"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"The name field is required. (and 2 more errors)\",\n    \"errors\": {\n        \"name\": [\n            \"The name field is required.\"\n        ],\n        \"amount_available\": [\n            \"The amount available field is required.\"\n        ],\n        \"cost\": [\n            \"The cost field is required.\"\n        ]\n    }\n}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Ball\",\n    \"amount_available\": 3,\n    \"cost\": 100\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/products",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 26 Jun 2022 20:38:15 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 26 Jun 2022 20:38:15 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.0.14"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"name\": \"Ball\",\n        \"amount_available\": 3,\n        \"cost\": 100,\n        \"seller_id\": \"ff9984f9-f845-435a-9e29-0672db968ef5\",\n        \"id\": \"5e48fc85-6e08-4022-8ebf-faf152b63252\",\n        \"updated_at\": \"2022-06-26T20:38:15.000000Z\",\n        \"created_at\": \"2022-06-26T20:38:15.000000Z\"\n    },\n    \"status\": \"success\",\n    \"message\": \"Product created successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Product",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"amount_available\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/products/cc33242a-c185-4422-9575-48821d0e3ab8",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"products",
+								"cc33242a-c185-4422-9575-48821d0e3ab8"
+							]
+						},
+						"description": "update an existing expense"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"amount_available\": 2\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/products/cc33242a-c185-4422-9575-48821d0e3ab8",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"products",
+										"cc33242a-c185-4422-9575-48821d0e3ab8"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 26 Jun 2022 20:48:19 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 26 Jun 2022 20:48:19 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.0.14"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": \"cc33242a-c185-4422-9575-48821d0e3ab8\",\n        \"name\": \"Chocolate\",\n        \"amount_available\": 2,\n        \"cost\": 10,\n        \"seller_id\": \"ff9984f9-f845-435a-9e29-0672db968ef5\",\n        \"created_at\": \"2022-06-26T20:38:59.000000Z\",\n        \"updated_at\": \"2022-06-26T20:48:19.000000Z\"\n    },\n    \"status\": \"success\",\n    \"message\": \"Product updated successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Product",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{host}}/products/{id}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"products",
+								"{id}"
+							]
+						},
+						"description": "delete an expense"
+					},
+					"response": [
+						{
+							"name": "Error",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{host}}/products/cc33242a-c185-4422-9575-48821d0e3ab8",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"products",
+										"cc33242a-c185-4422-9575-48821d0e3ab8"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 26 Jun 2022 20:56:47 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 26 Jun 2022 20:56:47 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.0.14"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"message\": \"Error occurred while deleting product\"\n}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{host}}/products/cc33242a-c185-4422-9575-48821d0e3ab8",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"products",
+										"cc33242a-c185-4422-9575-48821d0e3ab8"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 26 Jun 2022 20:57:07 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 26 Jun 2022 20:57:07 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.0.14"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Product deleted\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Purchase Product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/products/{id}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"products",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Rest routes implemented for Expense service",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Deposit",
+			"item": [
+				{
+					"name": "Deposit User's Account",
+					"request": {
+						"method": "POST",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Reset User's Deposit Amount",
+					"request": {
+						"method": "POST",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{TOKEN}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "TOKEN",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "host",
+			"value": "http://127.0.0.1:8000/api/v1",
+			"type": "string"
+		}
+	]
+}

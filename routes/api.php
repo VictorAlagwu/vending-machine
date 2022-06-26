@@ -47,13 +47,17 @@ Route::group(
                 Route::get('/', [ProductController::class, 'index']);
                 Route::get('/{id}', [ProductController::class, 'show']);
                 Route::post('/', [ProductController::class, 'store'])->middleware(['is_seller']);
+                Route::post('/{id}/buy', [ProductController::class, 'buyProduct'])->middleware(['is_buyer']);
                 Route::put('/{id}', [ProductController::class, 'update'])->middleware(['is_seller']);
                 Route::delete('/{id}', [ProductController::class, 'destroy'])->middleware(['is_seller']);
             });
 
-            Route::post('/deposit', [DepositController::class, 'store'])->middleware(['is_buyer']);
-            Route::post('/reset', [DepositController::class, 'refreshDeposit
-            '])->middleware(['is_buyer']);
+            Route::group([
+                'middleware' => 'is_buyer',
+            ], function () {
+                Route::post('/deposit', [DepositController::class, 'deposit']);
+                Route::post('/reset', [DepositController::class, 'refreshDeposit']);
+            });
         });
     }
 );

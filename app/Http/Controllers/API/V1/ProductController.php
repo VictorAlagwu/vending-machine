@@ -89,6 +89,27 @@ class ProductController extends Controller
             ]
         )->response();
     }
+    
+    public function buyProduct(UpdateRequest $request, string $uniqueId): JsonResponse
+    {
+        $product = $this->productService->update($request->convertToDto(), $uniqueId);
+
+        if (is_null($product)) {
+            return response()->json(
+                [
+                    'status' => "error",
+                    'message' => "Error occurred while updating product"
+                ],
+                400
+            );
+        }
+        return (new ProductResource($product))->additional(
+            [
+                'status' => 'success',
+                'message' => "Product updated successfully",
+            ]
+        )->response();
+    }
 
     public function destroy(string $uniqueId): JsonResponse
     {

@@ -11,7 +11,9 @@ class DepositController extends Controller
     public function __construct(protected DepositService $depositService) {}
 
     public function deposit() {
-        
+        $this->depositService->deposit();
     }
-    public function reset() {}
+    public function resetDeposit() {
+        $this->depositService->reset();
+    }
 }
