@@ -51,6 +51,12 @@ final class UserService
 
     public function destroy(string $uniqueId): int
     {
+        if ($uniqueId !== auth()->user()->id) {
+            return 0;
+        }
+        $user = $this->userRepository->findOne([User::ID => $uniqueId]);
+
+        $user->products->each->delete();
         return $this->userRepository->deleteWhere([User::ID => $uniqueId]);
     }
 }

@@ -44,7 +44,8 @@ final class PurchaseService
                 ->where(
                     [Product::ID =>  $dto->product_id],
                 )->decrement(PRODUCT::AMOUNT_AVAILABLE, $dto->quantity);
-            $currentBalance = $this->userRepository->findOne([User::ID => auth()->user()->id])->deposit;
+            $currentBalance = (int) $this->userRepository->findOne([User::ID => auth()->user()->id])->deposit;
+   
             $payload = [
                 'product' =>  $this->productRepository->findOne([Product::ID => $dto->product_id]),
                 'total_cost' => $totalCost,

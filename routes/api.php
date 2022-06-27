@@ -45,8 +45,7 @@ Route::group(
             Route::group([
                 'prefix' => 'products',
             ], function () {
-                Route::get('/', [ProductController::class, 'index']);
-                Route::post('/buy', [PurchaseController::class, 'buyProduct'])->middleware(['is_buyer']);
+                Route::get('', [ProductController::class, 'index']);
                 Route::get('/{id}', [ProductController::class, 'show']);
                 Route::post('/', [ProductController::class, 'store'])->middleware(['is_seller']);
                 Route::put('/{id}', [ProductController::class, 'update'])->middleware(['is_seller']);
@@ -59,6 +58,8 @@ Route::group(
                 Route::post('/deposit', [DepositController::class, 'deposit']);
                 Route::post('/reset', [DepositController::class, 'reset']);
             });
+            
+            Route::post('/buy', [PurchaseController::class, 'buyProduct'])->middleware(['is_buyer']);
         });
     }
 );
