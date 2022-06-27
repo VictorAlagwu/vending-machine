@@ -192,6 +192,79 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"status\": \"error\",\n    \"message\": \"Invalid credentials\"\n}"
+						},
+						{
+							"name": "Error - Active sessions",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\":\"demo_buyer\",\n    \"password\":\"secret\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/auth/login",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 27 Jun 2022 17:07:39 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 27 Jun 2022 17:07:39 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.0.14"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"message\": \"There is already an active session using your account\"\n}"
 						}
 					]
 				},
@@ -280,10 +353,19 @@
 					]
 				},
 				{
-					"name": "Logout All",
+					"name": "Logout All Sessions",
 					"request": {
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"demo_buyer\",\n    \"password\": \"secret\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "{{host}}/auth/logout/all",
 							"host": [
@@ -298,10 +380,93 @@
 					},
 					"response": [
 						{
+							"name": "Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"demo_buyer\",\n    \"password\": \"secretd\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/auth/logout/all",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"auth",
+										"logout",
+										"all"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 27 Jun 2022 17:06:57 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 27 Jun 2022 17:06:57 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.0.14"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"message\": \"Invalid credentials\"\n}"
+						},
+						{
 							"name": "Success",
 							"originalRequest": {
 								"method": "POST",
 								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"demo_buyer\",\n    \"password\": \"secret\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
 									"raw": "{{host}}/auth/logout/all",
 									"host": [
@@ -324,11 +489,11 @@
 								},
 								{
 									"key": "Date",
-									"value": "Sun, 26 Jun 2022 16:34:41 GMT"
+									"value": "Mon, 27 Jun 2022 17:08:00 GMT"
 								},
 								{
 									"key": "Date",
-									"value": "Sun, 26 Jun 2022 16:34:41 GMT"
+									"value": "Mon, 27 Jun 2022 17:08:00 GMT"
 								},
 								{
 									"key": "Connection",
@@ -1220,13 +1385,13 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{host}}/products/cc33242a-c185-4422-9575-48821d0e3ab8",
+							"raw": "{{host}}/products/5e48fc85-6e08-4022-8ebf-faf152b63252",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
 								"products",
-								"cc33242a-c185-4422-9575-48821d0e3ab8"
+								"5e48fc85-6e08-4022-8ebf-faf152b63252"
 							]
 						},
 						"description": "display details of specific expense"
@@ -1471,6 +1636,78 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"data\": {\n        \"name\": \"Ball\",\n        \"amount_available\": 3,\n        \"cost\": 100,\n        \"seller_id\": \"ff9984f9-f845-435a-9e29-0672db968ef5\",\n        \"id\": \"5e48fc85-6e08-4022-8ebf-faf152b63252\",\n        \"updated_at\": \"2022-06-26T20:38:15.000000Z\",\n        \"created_at\": \"2022-06-26T20:38:15.000000Z\"\n    },\n    \"status\": \"success\",\n    \"message\": \"Product created successfully\"\n}"
+						},
+						{
+							"name": "Unauthorized Access Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Chocolaote\",\n    \"amount_available\": 2,\n    \"cost\": 10\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/products",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 26 Jun 2022 21:10:51 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 26 Jun 2022 21:10:51 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.0.14"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"message\": \"Unauthorized request.\"\n}"
 						}
 					]
 				},
@@ -1586,13 +1823,13 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{host}}/products/{id}",
+							"raw": "{{host}}/products/cc33242a-c185-4422-9575-48821d0e3ab8",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
 								"products",
-								"{id}"
+								"cc33242a-c185-4422-9575-48821d0e3ab8"
 							]
 						},
 						"description": "delete an expense"
@@ -1735,24 +1972,6 @@
 							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Product deleted\"\n}"
 						}
 					]
-				},
-				{
-					"name": "Purchase Product",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"url": {
-							"raw": "{{host}}/products/{id}",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"products",
-								"{id}"
-							]
-						}
-					},
-					"response": []
 				}
 			],
 			"description": "Rest routes implemented for Expense service",
@@ -1784,17 +2003,569 @@
 					"name": "Deposit User's Account",
 					"request": {
 						"method": "POST",
-						"header": []
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"amount\": 10\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/deposit",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"deposit"
+							]
+						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"amount\": 101\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/deposit",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"deposit"
+									]
+								}
+							},
+							"status": "Unprocessable Content",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 27 Jun 2022 12:21:33 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 27 Jun 2022 12:21:33 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.0.14"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"The only valid amount values allowed are 5, 10, 20, 50, 100 or 0\",\n    \"errors\": {\n        \"amount\": [\n            \"The only valid amount values allowed are 5, 10, 20, 50, 100 or 0\"\n        ]\n    }\n}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"amount\": 10\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/deposit",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"deposit"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 27 Jun 2022 12:25:07 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 27 Jun 2022 12:25:07 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.0.14"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": \"4b4e2412-c209-47c9-b124-1dca0b151e42\",\n        \"username\": \"demo_buyer\",\n        \"deposit\": 110,\n        \"role\": \"buyer\",\n        \"created_at\": \"2022-06-26T09:34:57.000000Z\",\n        \"updated_at\": \"2022-06-27T12:25:07.000000Z\"\n    },\n    \"status\": \"success\",\n    \"message\": \"Deposit added successfully\"\n}"
+						}
+					]
 				},
 				{
 					"name": "Reset User's Deposit Amount",
 					"request": {
 						"method": "POST",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "{{host}}/reset",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"reset"
+							]
+						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/reset",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"reset"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 27 Jun 2022 12:27:56 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 27 Jun 2022 12:27:56 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.0.14"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": \"4b4e2412-c209-47c9-b124-1dca0b151e42\",\n        \"username\": \"demo_buyer\",\n        \"deposit\": 0,\n        \"role\": \"buyer\",\n        \"created_at\": \"2022-06-26T09:34:57.000000Z\",\n        \"updated_at\": \"2022-06-27T12:27:56.000000Z\"\n    },\n    \"status\": \"success\",\n    \"message\": \"Deposit resetted successfully\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Purchase Product",
+			"item": [
+				{
+					"name": "Purchase Product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/products/{id}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"products",
+								"{id}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Insufficient Fund",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"product_id\": \"5e48fc85-6e08-4022-8ebf-faf152b63252\",\n    \"quantity\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/products/buy",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"products",
+										"buy"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 27 Jun 2022 16:54:52 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 27 Jun 2022 16:54:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.0.14"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"message\": \"The deposit available in your account is not sufficient from this transaction\"\n}"
+						},
+						{
+							"name": "Invalid Product",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"product_id\": \"5e48fc85-6e08-4022-8ebf-faf12b63252\",\n    \"quantity\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/products/buy",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"products",
+										"buy"
+									]
+								}
+							},
+							"status": "Unprocessable Content",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 27 Jun 2022 16:57:53 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 27 Jun 2022 16:57:53 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.0.14"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"The selected product id is invalid.\",\n    \"errors\": {\n        \"product_id\": [\n            \"The selected product id is invalid.\"\n        ]\n    }\n}"
+						},
+						{
+							"name": "Success - 1",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"product_id\": \"5e48fc85-6e08-4022-8ebf-faf152b63252\",\n    \"quantity\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/products/buy",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"products",
+										"buy"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 27 Jun 2022 16:59:16 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 27 Jun 2022 16:59:16 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.0.14"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Purchase successfully completed\",\n    \"data\": {\n        \"product\": {\n            \"id\": \"5e48fc85-6e08-4022-8ebf-faf152b63252\",\n            \"name\": \"Ball\",\n            \"amount_available\": 2,\n            \"cost\": 100,\n            \"seller_id\": \"ff9984f9-f845-435a-9e29-0672db968ef5\",\n            \"created_at\": \"2022-06-26T20:38:15.000000Z\",\n            \"updated_at\": \"2022-06-27T16:59:16.000000Z\",\n            \"seller\": {\n                \"id\": \"ff9984f9-f845-435a-9e29-0672db968ef5\",\n                \"username\": \"demo_seller\",\n                \"deposit\": 0,\n                \"role\": \"seller\",\n                \"created_at\": \"2022-06-26T09:34:57.000000Z\",\n                \"updated_at\": \"2022-06-26T09:34:57.000000Z\"\n            }\n        },\n        \"total_cost\": 100,\n        \"balance\": [\n            0\n        ]\n    }\n}"
+						},
+						{
+							"name": "Success - With Balance",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"product_id\": \"a69c3b53-b1b7-4045-a01e-babad0aced59\",\n    \"quantity\": 2\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/products/buy",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"products",
+										"buy"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 27 Jun 2022 17:09:19 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 27 Jun 2022 17:09:19 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.0.14"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "57"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Purchase successfully completed\",\n    \"data\": {\n        \"product\": {\n            \"id\": \"a69c3b53-b1b7-4045-a01e-babad0aced59\",\n            \"name\": \"Chocolaote\",\n            \"amount_available\": 0,\n            \"cost\": 10,\n            \"seller_id\": \"ff9984f9-f845-435a-9e29-0672db968ef5\",\n            \"created_at\": \"2022-06-27T17:00:53.000000Z\",\n            \"updated_at\": \"2022-06-27T17:09:19.000000Z\",\n            \"seller\": {\n                \"id\": \"ff9984f9-f845-435a-9e29-0672db968ef5\",\n                \"username\": \"demo_seller\",\n                \"deposit\": 0,\n                \"role\": \"seller\",\n                \"created_at\": \"2022-06-26T09:34:57.000000Z\",\n                \"updated_at\": \"2022-06-26T09:34:57.000000Z\"\n            }\n        },\n        \"total_cost\": 20,\n        \"balance\": [\n            20,\n            10\n        ]\n    }\n}"
+						}
+					]
 				}
 			]
 		}

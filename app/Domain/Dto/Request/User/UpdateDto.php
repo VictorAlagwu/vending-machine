@@ -16,7 +16,6 @@ class UpdateDto extends DataTransferObject
      */
     public ?string $username;
     public ?string $password; 
-    public ?int $deposit; 
 
     public static function fromRequest(UpdateRequest $request): UpdateDto
     {
@@ -24,7 +23,6 @@ class UpdateDto extends DataTransferObject
             [
                 User::USERNAME => $request->username,
                 User::PASSWORD => Hash::make($request->password),
-                User::DEPOSIT => $request->deposit,
             ]
         );
     }

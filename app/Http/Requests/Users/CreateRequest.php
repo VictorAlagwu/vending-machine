@@ -46,7 +46,6 @@ class CreateRequest extends FormRequest
     {
         return [
             'deposit.*' => 'The only valid deposit values allowed are 5, 10, 20, 50, 100 or 0',
-            'body.required' => 'A message is required',
         ];
     }
 

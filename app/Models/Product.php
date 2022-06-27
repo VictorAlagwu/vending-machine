@@ -17,6 +17,8 @@ class Product extends Model
     public const COST = 'cost';
     public const SELLER_ID = 'seller_id';
 
+    public const R_SELLER = 'seller';
+
     protected $fillable = [
         self::ID,
         self::NAME,
@@ -25,8 +27,9 @@ class Product extends Model
         self::SELLER_ID,
     ];
 
+    protected $with = [self::R_SELLER];
 
     public function seller() {
-        return $this->belongsTo(Seller::class);
+        return $this->belongsTo(User::class, 'seller_id', 'id');
     }
 }
